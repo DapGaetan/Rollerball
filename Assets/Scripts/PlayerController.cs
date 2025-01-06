@@ -9,12 +9,14 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private int count;
     private float movementX, movementY;
+    public GameObject winTextObject;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         count = 0;
         SetCountText();
+        winTextObject.SetActive(false);
     }
 
     void OnMove(InputValue movementValue)
@@ -28,6 +30,11 @@ public class PlayerController : MonoBehaviour
     void SetCountText()
     {
         countText.text = "Count: " + count.ToString();
+
+        if (count >= 3)
+        {
+            winTextObject.SetActive(true);
+        }
     }
 
     private void FixedUpdate()
